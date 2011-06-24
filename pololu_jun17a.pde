@@ -2,8 +2,8 @@
 #define txPin 2
 #define rxPin 3
 
- #define TIBIA 45
- #define DELAY 200
+ #define TIBIA 25
+ #define DELAY 150
 
  // +J, BWD = forward, backward (coxa)
  // UP, DOWN = up, down (femur)
@@ -65,13 +65,9 @@ void loop()
 {
   tibia();
   tri1();
-  //	delay(2000);
   tri2();
-  //	delay(2000);
   tri3();
-  //	delay(2000);
   tri4();
-  //	delay(2000);
 }
 
 void tibia() {
@@ -167,7 +163,7 @@ void tri4() {
   settarget(F_FEM, DOWN);
   
   settarget(B_COX, B_FWD);
-  settarget(B_FEM, DOWN);
+  settarget(B_FEM, DOWN );
 
   delay(DELAY);
 };
@@ -184,4 +180,3 @@ void settarget(unsigned char servo, unsigned int target)
   mySerial.print(target & 0x7F, BYTE);
   mySerial.print((target >> 7) & 0x7F,BYTE);
 }
-
