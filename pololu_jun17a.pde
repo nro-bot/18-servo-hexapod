@@ -37,7 +37,7 @@
 #define F_FEM 17
 #define F_TIB 18
 
-int numtimes = 2;
+int numtimes = 3;
 
 NewSoftSerial mySerial(rxPin, txPin);
 
@@ -48,18 +48,18 @@ void setup()// run once, when the sketch starts
 }
 void loop()
 {
-  for (int i=0; i<=numtimes; i++){  
+  for (int i=0; i<=4; i++){  
     walkfwd();
   }
-//  for (int j=0; j<=numtimes; j++){  
-//    walkbwd();
-//  }
-//  for (int k=0; k<=numtimes; k++){  
-//    turnleft();  
-//  }
-//  for (int l=0; l<=numtimes; l++){  
-//    turnright();  
-//  }  
+  for (int j=0; j<=4; j++){  
+    walkbwd();
+  }
+  for (int k=0; k<=2; k++){  
+    turnleft();  
+  }
+  for (int l=0; l<=2; l++){  
+    turnright();  
+  }  
 }
 
 void tibia() {
@@ -81,7 +81,7 @@ void f1() {
   settarget(E_COX, CCW);
   
   settarget(D_COX, CW);
-  settarget(F_COX, CCW);
+  settarget(F_COX, CW);
   settarget(B_COX, CCW);
 
   delay(DELAY);
@@ -136,7 +136,7 @@ void b1() {
   settarget(E_COX, CW);
   
   settarget(D_COX, CCW);
-  settarget(F_COX, CW);
+  settarget(F_COX, CCW);
   settarget(B_COX, CW);
 
   delay(DELAY);
