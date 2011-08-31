@@ -5,9 +5,7 @@
  #define TIBIA 25
  #define DELAY 150
 
- // +J, BWD = forward, backward (coxa)
- // UP, DOWN = up, down (femur)
- // 1,3, 2 = left
+
  #define AC_FWD 105
  #define AC_BWD 70
  #define AC_UP 92
@@ -15,21 +13,17 @@
  
  #define B_FWD 95 
  #define B_BWD 90
-// #define B_UP 100
-// #define B_DOWN 160
- // 4,6, 5 = right. - fwd, + bwd.
+
  #define DF_FWD 70
  #define DF_BWD 105
-// #define DF_UP 100
-// #define DF_DOWN 160
 
  #define E_FWD 90
  #define E_BWD 95
-// #define E_UP 100
-// #define E_DOWN 160
 
 int UP = AC_UP;
 int DOWN = AC_DOWN;
+
+// ~~~~~~~~~~~~~~~~~~~~ //
 
 #define A_COX 1
 #define A_FEM 2
@@ -79,94 +73,155 @@ void tibia() {
   settarget(F_TIB, TIBIA);
 }
 
-void tri1() { 
+
+// ~~~~~~~~~~~~~~~~~~~~ //
+
+void f1() { 
   // [COXA] changed
   // [FEMUR] unchanged
   settarget(A_COX, AC_FWD);
   settarget(C_COX, AC_FWD);
-  settarget(A_FEM, AC_UP);
-  settarget(C_FEM, AC_UP);
-  
   settarget(E_COX, E_FWD);
-  settarget(E_FEM, UP);
   
   settarget(D_COX, DF_BWD);
   settarget(F_COX, DF_BWD);
-  settarget(D_FEM, DOWN);
-  settarget(F_FEM, DOWN);
-  
   settarget(B_COX, B_BWD);
-  settarget(B_FEM, DOWN);
 
   delay(DELAY);
 };
 
-void tri2() { 
+void f2() { 
   // [COXA] unchanged
   // [FEMUR] changed
-  settarget(A_COX, AC_FWD);
-  settarget(C_COX, AC_FWD);
   settarget(A_FEM, AC_DOWN);
   settarget(C_FEM, AC_DOWN);
-  
-  settarget(E_COX, E_FWD);
   settarget(E_FEM, DOWN);
   
-  settarget(D_COX, DF_BWD);
-  settarget(F_COX, DF_BWD);
   settarget(D_FEM, UP);
   settarget(F_FEM, UP);
-  
-  settarget(B_COX, B_BWD);
   settarget(B_FEM, UP);
 
   delay(DELAY);
 };
 
-void tri3() { 
+void f3() { 
   // [COXA] changed
   // [FEMUR] unchanged
   settarget(A_COX, AC_BWD);
   settarget(C_COX, AC_BWD);
-  settarget(A_FEM, AC_DOWN);
-  settarget(C_FEM, AC_DOWN);
-  
   settarget(E_COX, E_BWD);
-  settarget(E_FEM, DOWN);
   
   settarget(D_COX, DF_FWD);
   settarget(F_COX, DF_FWD);
-  settarget(D_FEM, UP);
-  settarget(F_FEM, UP);
-  
   settarget(B_COX, B_FWD);
-  settarget(B_FEM, UP);
 
   delay(DELAY);
 };
 
-
-void tri4() { 
+void f4() { 
   // [COXA] unchanged
   // [FEMUR] changed
-  settarget(A_COX, AC_BWD);
-  settarget(C_COX, AC_BWD);
   settarget(A_FEM, AC_UP);
   settarget(C_FEM, AC_UP);
-  
-  settarget(E_COX, E_BWD);
   settarget(E_FEM, UP);
   
-  settarget(D_COX, DF_FWD);
-  settarget(F_COX, DF_FWD);
   settarget(D_FEM, DOWN);
   settarget(F_FEM, DOWN);
-  
-  settarget(B_COX, B_FWD);
   settarget(B_FEM, DOWN );
 
   delay(DELAY);
 };
+
+// ~~~~~~~~~~~~~~~~~~~~ //
+
+void walkbwd() {
+  tibia();
+  b1();
+  b2();
+  b3();
+  b4();  
+}
+void walkfwd() {
+  tibia();
+  f1();
+  f2();
+  f3();
+  f4();
+}
+
+void turnleft() {
+  tibia();
+  l1();
+  l2();
+  l3();
+  l4();
+}
+
+void turnright() {
+  tibia();
+  r1();
+  r2();
+  r3();
+  r4();
+}
+// ~~~~~~~~~~~~~~~~~~~~ //
+
+void b1() { 
+  // [COXA] changed
+  // [FEMUR] unchanged
+  settarget(A_COX, AC_FWD);
+  settarget(C_COX, AC_FWD);
+  settarget(E_COX, E_FWD);
+  
+  settarget(D_COX, DF_BWD);
+  settarget(F_COX, DF_BWD);
+  settarget(B_COX, B_BWD);
+
+  delay(DELAY);
+};
+
+void b2() { 
+  // [COXA] unchanged
+  // [FEMUR] changed
+  settarget(A_FEM, AC_DOWN);
+  settarget(C_FEM, AC_DOWN);
+  settarget(E_FEM, DOWN);
+  
+  settarget(D_FEM, UP);
+  settarget(F_FEM, UP);
+  settarget(B_FEM, UP);
+
+  delay(DELAY);
+};
+
+void b3() { 
+  // [COXA] changed
+  // [FEMUR] unchanged
+  settarget(A_COX, AC_BWD);
+  settarget(C_COX, AC_BWD);
+  settarget(E_COX, E_BWD);
+  
+  settarget(D_COX, DF_FWD);
+  settarget(F_COX, DF_FWD);
+  settarget(B_COX, B_FWD);
+
+  delay(DELAY);
+};
+
+void b4() { 
+  // [COXA] unchanged
+  // [FEMUR] changed
+  settarget(A_FEM, AC_UP);
+  settarget(C_FEM, AC_UP);
+  settarget(E_FEM, UP);
+  
+  settarget(D_FEM, DOWN);
+  settarget(F_FEM, DOWN);
+  settarget(B_FEM, DOWN );
+
+  delay(DELAY);
+};
+
 
 //Send a Set Target command to the Maestro.
 //Target is in units of quarter microseconds, so the normal range is 4000 to 8000.
