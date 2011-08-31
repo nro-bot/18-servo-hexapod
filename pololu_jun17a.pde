@@ -4,24 +4,12 @@
 
  #define TIBIA 25
  #define DELAY 150
-
-
- #define AC_FWD 105
- #define AC_BWD 70
- #define AC_UP 92
- #define AC_DOWN 125
  
- #define B_FWD 95 
- #define B_BWD 90
+ #define CW 70
+ #define CCW 105
 
- #define DF_FWD 70
- #define DF_BWD 105
-
- #define E_FWD 90
- #define E_BWD 95
-
-int UP = AC_UP;
-int DOWN = AC_DOWN;
+ #define UP 92
+ #define DOWN 125
 
 // ~~~~~~~~~~~~~~~~~~~~ //
 
@@ -49,7 +37,10 @@ int DOWN = AC_DOWN;
 #define F_FEM 17
 #define F_TIB 18
 
+int numtimes = 2;
+
 NewSoftSerial mySerial(rxPin, txPin);
+
 void setup()// run once, when the sketch starts
 {
   mySerial.begin(9600);
@@ -57,11 +48,18 @@ void setup()// run once, when the sketch starts
 }
 void loop()
 {
-  tibia();
-  tri1();
-  tri2();
-  tri3();
-  tri4();
+  for (int i=0; i<=numtimes; i++){  
+    walkfwd();
+  }
+//  for (int j=0; j<=numtimes; j++){  
+//    walkbwd();
+//  }
+//  for (int k=0; k<=numtimes; k++){  
+//    turnleft();  
+//  }
+//  for (int l=0; l<=numtimes; l++){  
+//    turnright();  
+//  }  
 }
 
 void tibia() {
@@ -74,27 +72,25 @@ void tibia() {
 }
 
 
-// ~~~~~~~~~~~~~~~~~~~~ //
+// ~~~~~~~~~~fwd~~~~~~~~~~ //
 
 void f1() { 
   // [COXA] changed
-  // [FEMUR] unchanged
-  settarget(A_COX, AC_FWD);
-  settarget(C_COX, AC_FWD);
-  settarget(E_COX, E_FWD);
+  settarget(A_COX, CW);
+  settarget(C_COX, CW);
+  settarget(E_COX, CCW);
   
-  settarget(D_COX, DF_BWD);
-  settarget(F_COX, DF_BWD);
-  settarget(B_COX, B_BWD);
+  settarget(D_COX, CW);
+  settarget(F_COX, CCW);
+  settarget(B_COX, CCW);
 
   delay(DELAY);
-};
+}
 
 void f2() { 
-  // [COXA] unchanged
   // [FEMUR] changed
-  settarget(A_FEM, AC_DOWN);
-  settarget(C_FEM, AC_DOWN);
+  settarget(A_FEM, DOWN);
+  settarget(C_FEM, DOWN);
   settarget(E_FEM, DOWN);
   
   settarget(D_FEM, UP);
@@ -102,27 +98,25 @@ void f2() {
   settarget(B_FEM, UP);
 
   delay(DELAY);
-};
+}
 
 void f3() { 
   // [COXA] changed
-  // [FEMUR] unchanged
-  settarget(A_COX, AC_BWD);
-  settarget(C_COX, AC_BWD);
-  settarget(E_COX, E_BWD);
+  settarget(A_COX, CCW);
+  settarget(C_COX, CCW);
+  settarget(E_COX, CW);
   
-  settarget(D_COX, DF_FWD);
-  settarget(F_COX, DF_FWD);
-  settarget(B_COX, B_FWD);
+  settarget(D_COX, CCW);
+  settarget(F_COX, CCW);
+  settarget(B_COX, CW);
 
   delay(DELAY);
-};
+}
 
 void f4() { 
-  // [COXA] unchanged
   // [FEMUR] changed
-  settarget(A_FEM, AC_UP);
-  settarget(C_FEM, AC_UP);
+  settarget(A_FEM, UP);
+  settarget(C_FEM, UP);
   settarget(E_FEM, UP);
   
   settarget(D_FEM, DOWN);
@@ -130,9 +124,173 @@ void f4() {
   settarget(B_FEM, DOWN );
 
   delay(DELAY);
-};
+}
+
+// ~~~~~~~~~bwd~~~~~~~~~~~ //
+
+
+void b1() { 
+  // [COXA] changed
+  settarget(A_COX, CCW);
+  settarget(C_COX, CCW);
+  settarget(E_COX, CW);
+  
+  settarget(D_COX, CCW);
+  settarget(F_COX, CW);
+  settarget(B_COX, CW);
+
+  delay(DELAY);
+}
+
+void b2() { 
+  // [FEMUR] changed
+  settarget(A_FEM, DOWN);
+  settarget(C_FEM, DOWN);
+  settarget(E_FEM, DOWN);
+  
+  settarget(D_FEM, UP);
+  settarget(F_FEM, UP);
+  settarget(B_FEM, UP);
+
+  delay(DELAY);
+}
+
+void b3() { 
+  // [COXA] changed
+  settarget(A_COX, CW);
+  settarget(C_COX, CW);
+  settarget(E_COX, CCW);
+  
+  settarget(D_COX, CW);
+  settarget(F_COX, CW);
+  settarget(B_COX, CCW);
+
+  delay(DELAY);
+}
+
+void b4() { 
+  // [FEMUR] changed
+  settarget(A_FEM, UP);
+  settarget(C_FEM, UP);
+  settarget(E_FEM, UP);
+  
+  settarget(D_FEM, DOWN);
+  settarget(F_FEM, DOWN);
+  settarget(B_FEM, DOWN );
+
+  delay(DELAY);
+}
+
+// ~~~~~~~~~left~~~~~~~~~~~ //
+
+void l1() { 
+  // [COXA] changed
+  settarget(A_COX, CCW);
+  settarget(C_COX, CCW);
+  settarget(E_COX, CCW);
+  
+  settarget(D_COX, CW);
+  settarget(F_COX, CW);
+  settarget(B_COX, CW);
+
+  delay(DELAY);
+}
+
+void l2() { 
+  // [FEMUR] changed
+  settarget(A_FEM, DOWN);
+  settarget(C_FEM, DOWN);
+  settarget(E_FEM, DOWN);
+  
+  settarget(D_FEM, UP);
+  settarget(F_FEM, UP);
+  settarget(B_FEM, UP);
+
+  delay(DELAY);
+}
+
+void l3() { 
+  // [COXA] changed
+  settarget(A_COX, CW);
+  settarget(C_COX, CW);
+  settarget(E_COX, CW);
+  
+  settarget(D_COX, CCW);
+  settarget(F_COX, CCW);
+  settarget(B_COX, CCW);
+
+  delay(DELAY);
+}
+
+void l4() { 
+  // [FEMUR] changed
+  settarget(A_FEM, UP);
+  settarget(C_FEM, UP);
+  settarget(E_FEM, UP);
+  
+  settarget(D_FEM, DOWN);
+  settarget(F_FEM, DOWN);
+  settarget(B_FEM, DOWN );
+
+  delay(DELAY);
+}
+
+// ~~~~~~~~~right~~~~~~~~~~~ //
+
+void r1() { 
+  // [COXA] changed
+  settarget(A_COX, CW);
+  settarget(C_COX, CW);
+  settarget(E_COX, CW);
+  
+  settarget(D_COX, CCW);
+  settarget(F_COX, CCW);
+  settarget(B_COX, CCW);
+
+  delay(DELAY);
+}
+
+void r2() { 
+  // [FEMUR] changed
+  settarget(A_FEM, DOWN);
+  settarget(C_FEM, DOWN);
+  settarget(E_FEM, DOWN);
+  
+  settarget(D_FEM, UP);
+  settarget(F_FEM, UP);
+  settarget(B_FEM, UP);
+
+  delay(DELAY);
+}
+
+void r3() { 
+  // [COXA] changed
+  settarget(A_COX, CCW);
+  settarget(C_COX, CCW);
+  settarget(E_COX, CCW);
+  
+  settarget(D_COX, CW);
+  settarget(F_COX, CW);
+  settarget(B_COX, CW);
+
+  delay(DELAY);
+}
+
+void r4() { 
+  // [FEMUR] changed
+  settarget(A_FEM, UP);
+  settarget(C_FEM, UP);
+  settarget(E_FEM, UP);
+  
+  settarget(D_FEM, DOWN);
+  settarget(F_FEM, DOWN);
+  settarget(B_FEM, DOWN );
+
+  delay(DELAY);
+}
 
 // ~~~~~~~~~~~~~~~~~~~~ //
+
 
 void walkbwd() {
   tibia();
@@ -164,63 +322,8 @@ void turnright() {
   r3();
   r4();
 }
+
 // ~~~~~~~~~~~~~~~~~~~~ //
-
-void b1() { 
-  // [COXA] changed
-  // [FEMUR] unchanged
-  settarget(A_COX, AC_FWD);
-  settarget(C_COX, AC_FWD);
-  settarget(E_COX, E_FWD);
-  
-  settarget(D_COX, DF_BWD);
-  settarget(F_COX, DF_BWD);
-  settarget(B_COX, B_BWD);
-
-  delay(DELAY);
-};
-
-void b2() { 
-  // [COXA] unchanged
-  // [FEMUR] changed
-  settarget(A_FEM, AC_DOWN);
-  settarget(C_FEM, AC_DOWN);
-  settarget(E_FEM, DOWN);
-  
-  settarget(D_FEM, UP);
-  settarget(F_FEM, UP);
-  settarget(B_FEM, UP);
-
-  delay(DELAY);
-};
-
-void b3() { 
-  // [COXA] changed
-  // [FEMUR] unchanged
-  settarget(A_COX, AC_BWD);
-  settarget(C_COX, AC_BWD);
-  settarget(E_COX, E_BWD);
-  
-  settarget(D_COX, DF_FWD);
-  settarget(F_COX, DF_FWD);
-  settarget(B_COX, B_FWD);
-
-  delay(DELAY);
-};
-
-void b4() { 
-  // [COXA] unchanged
-  // [FEMUR] changed
-  settarget(A_FEM, AC_UP);
-  settarget(C_FEM, AC_UP);
-  settarget(E_FEM, UP);
-  
-  settarget(D_FEM, DOWN);
-  settarget(F_FEM, DOWN);
-  settarget(B_FEM, DOWN );
-
-  delay(DELAY);
-};
 
 
 //Send a Set Target command to the Maestro.
